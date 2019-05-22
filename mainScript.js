@@ -9,6 +9,8 @@ function response(room, msg, sender, isGroupChat, replier, imageDB) {
     * @method imageDB.getProfileImage() - Base64 인코딩 되어있는 JPEG 프로필 이미지 반환, 기본 값 null
     * @method replier.reply("String") - 메시지가 도착한 방에 답장을 보내는 메소드 */
 
+   // Git 연동 테스트
+
    if(msg == "/도움"){
      replier.reply(help());
    } else if(msg.indexOf("/날씨 ") == 0){
