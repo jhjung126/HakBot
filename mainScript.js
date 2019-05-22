@@ -22,7 +22,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB) {
      } else {
        replier.reply(result);
      }
-     
+
 
    } else if(msg.indexOf("/운세 ") == 0){
      var arr = msg.split(" ");
@@ -77,7 +77,7 @@ function getWeatherInfo(pos){
    } catch(e) {
      return null;
    }
-   
+
 }
 
 function help(){
@@ -109,7 +109,7 @@ function getTodayLunkInfo(zodiac){
        }
        zodiac = CALCZODIAC[zodiac%12];
      }
-     
+
      zodiac = zodiac.replace("띠","");
 
      for(var i = 0; i<data.length; i++){
@@ -122,8 +122,8 @@ function getTodayLunkInfo(zodiac){
      var results = [];
      results[0] = data[ZODIAC.indexOf(zodiac) * 2 ].trim();
      results[1] = data[ZODIAC.indexOf(zodiac) * 2 + 1 ].trim();
-     
-     
+
+
      var result = "[오늘의 띠별 운세]\n\n" + results.join("\n");
      return result;
    } catch(e) {
@@ -143,16 +143,16 @@ function getTodayStarLunkInfo(input){
      data = data.split("펼쳐보기")[0];
      data = data.trim();
      data = data.split("\n");
-   
+
      if(!isNaN(input)){
         input = Number(input);
        if(input.length == 6){
          input = input%10000;
        }
-       for(var j=0; j<CALCCONSTELLATION.length-1; j++){
+       for(var j=0; j<CALCCONSTELLATION.length; j++){
           if(j == 11){
-             if(input >= CALCCONSTELLATION[11] && input < CALCCONSTELLATION[0]){
-                input = CONSTELLATION[j];
+             if(input >= CALCCONSTELLATION[11] || input < CALCCONSTELLATION[0]){
+                input = CONSTELLATION[0];
                 break;
              }
           }else {
@@ -163,7 +163,7 @@ function getTodayStarLunkInfo(input){
           }
        }
      }
-     
+
      input = input.replace("자리","");
 
      for(var i = 0; i<data.length; i++){
@@ -176,8 +176,8 @@ function getTodayStarLunkInfo(input){
      var results = [];
      results[0] = data[CONSTELLATION.indexOf(input) * 2 ].trim();
      results[1] = data[CONSTELLATION.indexOf(input) * 2 + 1 ].trim();
-     
-     
+
+
      var result = "[오늘의 별자리 운세]\n\n" + results.join("\n");
 
      return result;
@@ -189,24 +189,24 @@ function getTodayStarLunkInfo(input){
 var Map = function()
 {
  this.map = new Object();
-}  
+}
 
-Map.prototype = 
-{   
+Map.prototype =
+{
      put : function(key, value)
-   {   
+   {
          this.map[key] = value;
-     },   
+     },
      get : function(key)
-   {   
+   {
          return this.map[key];
      },
      containsKey : function(key)
-   {    
+   {
       return key in this.map;
      },
      containsValue : function(value)
-   {    
+   {
       for(var prop in this.map)
      {
        if(this.map[prop] == value) return true;
@@ -214,42 +214,42 @@ Map.prototype =
       return false;
      },
      isEmpty : function(key)
-   {    
+   {
       return (this.size() == 0);
      },
      clear : function()
-   {   
+   {
       for(var prop in this.map)
      {
        delete this.map[prop];
       }
      },
      remove : function(key)
-   {    
+   {
       delete this.map[key];
      },
      keys : function()
-   {   
-         var keys = new Array();   
+   {
+         var keys = new Array();
          for(var prop in this.map)
-       {   
+       {
               keys.push(prop);
-         }   
+         }
          return keys;
      },
      values : function()
-   {   
-      var values = new Array();   
+   {
+      var values = new Array();
          for(var prop in this.map)
-       {   
+       {
           values.push(this.map[prop]);
-         }   
+         }
          return values;
      },
      size : function()
    {
        var count = 0;
-       for (var prop in this.map) 
+       for (var prop in this.map)
       {
          count++;
        }
